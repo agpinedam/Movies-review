@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: postgresdb
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: movies
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./movies.sql:/docker-entrypoint-initdb.d/movies.sql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: movies-app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://postgres:docker@postgres:5432/movies
+    depends_on:
+      - postgres
+
+volumes:
+  db_data:
