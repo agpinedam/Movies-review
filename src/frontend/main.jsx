@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import Search from './components/Search';   
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/edit-profile" element={<EditProfile />} /> 
+                <Route path="/search" element={<Search />} />   
             </Routes>
     </BrowserRouter>
 );
