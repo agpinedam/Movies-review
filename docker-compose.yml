@@ -14,7 +14,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./movies.sql:/docker-entrypoint-initdb.d/movies.sql
-    image: ${{ secrets.DOCKER_USERNAME }}/postgres-db:latest  # Image tag
+    image: "${DOCKER_USERNAME}/postgres-db:latest"  # Image tag
 
   app:
     build:
@@ -27,7 +27,7 @@ services:
       DATABASE_URL: postgres://postgres:docker@postgres:5432/movies
     depends_on:
       - postgres
-    image: ${{ secrets.DOCKER_USERNAME }}/my-app:latest  # Image tag
+    image: "${DOCKER_USERNAME}/my-app:latest"  # Image tag
 
 volumes:
   db_data:
