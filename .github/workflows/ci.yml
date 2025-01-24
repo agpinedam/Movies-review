@@ -65,7 +65,7 @@ jobs:
             TAG="${{ github.sha }}"
           fi
           docker-compose -f docker-compose.yml build
-          docker tag my-app:latest my-app:$TAG
+          docker tag ${DOCKER_USERNAME}/my-app:latest my-app:$TAG
         
       - name: Push Docker images
         run: docker-compose -f docker-compose.yml push
