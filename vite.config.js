@@ -9,8 +9,10 @@ export default defineConfig({
         emptyOutDir: true,            // Limpia la carpeta de salida antes de construir
     },
     server: {
-        proxy: {
-            '/api': 'http://localhost:5173', // Proxy para el backend
-        },
+        host: '0.0.0.0',
+        port: 5173
+      /*   proxy: {
+            '/api': 'http://localhost:5000', // Proxy para el backend
+        }, */
     },
 });
