@@ -18,11 +18,6 @@ const EditProfile = () => {
     const validateFields = () => {
         const newErrors = {};
 
-        // Validate madatory fields
-        if (!user.user_type) {
-            newErrors.user_type = 'Veuillez remplir le champs domaine';
-        }
-
         // Validate URL format for the photo field
         if (user.photo && !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(user.photo)) {
             newErrors.photo = 'Le format de votre fichier n’est pas reconnu.';
