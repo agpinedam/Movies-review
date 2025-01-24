@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile.app
     container_name: movies-app
     ports:
-      - "3000:8080"
+      - "5173:5173"
     environment:
       DATABASE_URL: postgres://postgres:docker@postgres:5432/movies
     depends_on:
