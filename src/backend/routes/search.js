@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-// Replace with your actual OMDB API key
-const OMDB_API_KEY = '34747f41';
+const OMDB_API_KEY = process.env.OMDB_API_KEY;
+
+if (!OMDB_API_KEY) {
+  throw new Error('OMDB_API_KEY is not set in environment variables.');
+}
 
 // Search movies route
 router.get('/', async (req, res) => {
