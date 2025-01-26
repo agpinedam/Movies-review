@@ -19,7 +19,7 @@ const Search = () => {
 
     try {
       setError('');
-      const response = await axios.get('http://0.0.0.0:5000/search', {
+      const response = await axios.get('http://localhost:5000/search', {
         params: { query: searchTerm, page: pageNumber },
       });
 
@@ -42,7 +42,7 @@ const Search = () => {
       handleSearch(queryFromUrl);
     }
   }, [searchParams]);
-
+/* 
   // Handle pagination
   const handleNextPage = () => {
     const nextPage = page + 1;
@@ -56,7 +56,7 @@ const Search = () => {
       setPage(previousPage);
       handleSearch(query, previousPage);
     }
-  };
+  }; */
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -112,19 +112,19 @@ const Search = () => {
                     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  <h2 style={{ margin: 0 }}>{movie.title}</h2>
-                  <p style={{ margin: 0 }}>Year: {movie.year}</p>
+                  <h2 style={{ margin: 0 }}>{movie.Title}</h2>
+                  <p style={{ margin: 0 }}>Year: {movie.Year}</p>
                   {movie.poster !== 'N/A' && (
                     <img
-                      src={movie.poster}
-                      alt={movie.title}
+                      src={movie.Poster}
+                      alt={movie.Title}
                       style={{ width: '100px', marginTop: '10px' }}
                     />
                   )}
                 </li>
               ))}
             </ul>
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
+        {/*     <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
               <button
                 onClick={handlePreviousPage}
                 disabled={page === 1}
@@ -154,7 +154,7 @@ const Search = () => {
               >
                 Next
               </button>
-            </div>
+            </div> */}
           </>
         ) : (
           !error && <p>No movies found. Try a different search term.</p>

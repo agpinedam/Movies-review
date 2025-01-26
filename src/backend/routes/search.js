@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
       params: {
         apikey: OMDB_API_KEY,
         s: query, // 's' is the search parameter for movies
+        
       },
     });
 
