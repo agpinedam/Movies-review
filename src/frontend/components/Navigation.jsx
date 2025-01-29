@@ -34,6 +34,12 @@ const Navigation = () => {
                         >
                             Modifier Profil
                         </button>
+                        <button
+                            onClick={() => navigate('/search')}
+                            className="bg-white text-blue-500 px-4 py-2 rounded hover:bg-gray-200"
+                        >
+                            Rechercher Films
+                        </button>
                     </>
                 )}
             </div>
@@ -44,6 +50,7 @@ const Navigation = () => {
                 >
                     Déconnexion
                 </button>
+
             </div>
         </nav>
     );

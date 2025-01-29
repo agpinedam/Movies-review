@@ -11,10 +11,13 @@ app.use(bodyParser.json());
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
+const searchRoutes = require('./routes/search');
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/search', searchRoutes);
 
 // create environement for testing
 if (process.env.NODE_ENV !== 'test') {
