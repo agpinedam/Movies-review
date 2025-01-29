@@ -12,12 +12,14 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
 const searchRoutes = require('./routes/search');
+const reviewsRoutes = require('./routes/reviews');
 
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/search', searchRoutes);
+app.use('/reviews', reviewsRoutes);
 
 // create environement for testing
 if (process.env.NODE_ENV !== 'test') {
