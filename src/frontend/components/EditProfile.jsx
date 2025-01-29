@@ -94,15 +94,6 @@ const EditProfile = () => {
                             onChange={(e) => setUser({ ...user, phone: e.target.value })}
                         />
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Adresse</label>
-                        <input
-                            type="text"
-                            className="border border-gray-300 rounded-lg w-full p-2 focus:outline-blue-500"
-                            value={user.address || ''}
-                            onChange={(e) => setUser({ ...user, address: e.target.value })}
-                        />
-                    </div>
 
                     <button
                         type="submit"

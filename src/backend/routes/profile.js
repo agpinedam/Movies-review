@@ -26,20 +26,18 @@ router.put('/:id', async (req, res) => {
         about,
         photo,
         phone,
-        address,
     } = req.body;
     const { id } = req.params;
 
     try {
         const result = await db.query(
             `UPDATE users 
-             SET about = $1, photo = $2, phone = $3, address = $4
-             WHERE id = $5 RETURNING *`,
+             SET about = $1, photo = $2, phone = $3
+             WHERE id = $4 RETURNING *`,
             [
                 about,
                 photo,
                 phone,
-                address,
                 id,
             ]
         );

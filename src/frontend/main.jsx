@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import './styles/styles.css';
+import './index.css';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
