@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const AddReview = () => {
   const [searchParams] = useSearchParams();
@@ -16,7 +15,7 @@ const AddReview = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
         try {
-            const response = await axios.post('http://movies-app:5000/reviews', {
+            const response = await axios.post('/api/reviews', {
                 movie_title: movieTitle,
                 review,
                 rating,

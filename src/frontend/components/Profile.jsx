@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -22,13 +21,21 @@ const Profile = () => {
         try {
             userId = Number(userId);  // <-- Convierte a número
             console.log("Fetching reviews for user_id:", userId); // <-- DEBUG
-            const response = await axios.get(`http://localhost:5000/reviews?user_id=${userId}`);
-            console.log("Reviews received:", response.data); // <-- DEBUG
-            setReviews(response.data);
+            
+            const response = await fetch(`/api/reviews?user_id=${userId}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log("Reviews received:", data); // <-- DEBUG
+            setReviews(data);
         } catch (err) {
             console.error('Error fetching reviews:', err);
         }
     };
+    
 
     const handleSearch = () => {
         if (searchQuery.trim()) {

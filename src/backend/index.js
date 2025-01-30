@@ -18,8 +18,8 @@ const reviewsRoutes = require('./routes/reviews');
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
-app.use('/search', searchRoutes);
-app.use('/reviews', reviewsRoutes);
+app.use('/api/search', searchRoutes);
+app.use('/api/reviews', reviewsRoutes);
 
 // create environement for testing
 if (process.env.NODE_ENV !== 'test') {
