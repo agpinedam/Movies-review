@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - GithubActionConfig
+      - master
   pull_request:
     branches:
-      - GithubActionConfig
+      - master
 
 jobs:
   test:
