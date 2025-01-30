@@ -6,10 +6,10 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import Search from './components/Search';   
+import AddReview from './components/AddReview';
 import './styles/styles.css';
 import './index.css';
-import Search from './components/Search';   
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/edit-profile" element={<EditProfile />} /> 
                 <Route path="/search" element={<Search />} />   
+                <Route path="/add-review" element={<AddReview />} />
             </Routes>
     </BrowserRouter>
 );

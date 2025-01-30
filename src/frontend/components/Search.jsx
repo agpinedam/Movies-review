@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
-  const [page, setPage] = useState(1); // Current page number
-  const [totalResults, setTotalResults] = useState(0); // Total results from the backend
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   // Fetch movies based on the query and page
   const handleSearch = async (searchTerm = query, pageNumber = 1) => {
@@ -20,11 +19,11 @@ const Search = () => {
     try {
       setError('');
       const response = await axios.get('http://localhost:5000/search', {
-        params: { query: searchTerm, page: pageNumber },
+        params: { query: searchTerm },
       });
 
       setMovies(response.data); // Update movies with the fetched results
-      setTotalResults(response.data.length); // Update total results if needed
+      //setTotalResults(response.data.length); // Update total results if needed
     } catch (err) {
       console.error('Error fetching movies:', err.message);
       setError(
@@ -42,21 +41,6 @@ const Search = () => {
       handleSearch(queryFromUrl);
     }
   }, [searchParams]);
-/* 
-  // Handle pagination
-  const handleNextPage = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
-    handleSearch(query, nextPage);
-  };
-
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      const previousPage = page - 1;
-      setPage(previousPage);
-      handleSearch(query, previousPage);
-    }
-  }; */
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -76,10 +60,7 @@ const Search = () => {
           }}
         />
         <button
-          onClick={() => {
-            setPage(1); // Reset to page 1 for new searches
-            handleSearch();
-          }}
+          onClick={() => handleSearch()}
           style={{
             marginLeft: '10px',
             padding: '10px 20px',
@@ -121,40 +102,23 @@ const Search = () => {
                       style={{ width: '100px', marginTop: '10px' }}
                     />
                   )}
-                </li>
+              <button
+                  onClick={() => navigate(`/add-review?title=${movie.Title}&poster=${movie.Poster}`)}
+                  style={{
+                    marginTop: '10px',
+                    padding: '10px',
+                    backgroundColor: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Add Review
+                </button>
+              </li>
               ))}
             </ul>
-        {/*     <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-              <button
-                onClick={handlePreviousPage}
-                disabled={page === 1}
-                style={{
-                  padding: '10px 20px',
-                  fontSize: '16px',
-                  backgroundColor: page === 1 ? '#ccc' : '#007BFF',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: page === 1 ? 'not-allowed' : 'pointer',
-                }}
-              >
-                Previous
-              </button>
-              <button
-                onClick={handleNextPage}
-                style={{
-                  padding: '10px 20px',
-                  fontSize: '16px',
-                  backgroundColor: '#007BFF',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                }}
-              >
-                Next
-              </button>
-            </div> */}
           </>
         ) : (
           !error && <p>No movies found. Try a different search term.</p>
