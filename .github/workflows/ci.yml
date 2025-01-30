@@ -75,7 +75,9 @@ jobs:
 
       - name: Build and tag Docker images
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            TAG="${{ github.event.release.tag_name }}"
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
             # Tag to use for a direct push to main
             TAG="${{ github.sha }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
