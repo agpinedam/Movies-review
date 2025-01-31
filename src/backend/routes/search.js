@@ -10,7 +10,7 @@ if (!OMDB_API_KEY) {
 
 // Search movies route
 router.get('/', async (req, res) => {
-  const { query } = req.query; // The search query sent by the client
+  const { query } = req.query; // 
   if (!query) {
     return res.status(400).json({ error: 'Query parameter is required' });
   }
