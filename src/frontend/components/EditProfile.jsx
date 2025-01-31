@@ -8,7 +8,7 @@ const EditProfile = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Get users
+        // Get users from database
         const userData = localStorage.getItem('user');
         if (userData) {
             setUser(JSON.parse(userData));
