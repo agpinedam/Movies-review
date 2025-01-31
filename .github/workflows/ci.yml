@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master
+      - testFeatures
   pull_request:
     branches:
-      - master
+      - testFeatures
 
 jobs:
   test:
@@ -25,6 +25,8 @@ jobs:
 
       - name: Run tests
         run: npm run test  # This will run all tests
+        env:
+          API_KEY: ${{ secrets.OMDB_API_KEY }}
 
   build:
     runs-on: ubuntu-latest
