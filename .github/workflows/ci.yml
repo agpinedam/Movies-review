@@ -3,14 +3,16 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master
+      - testFeatures
   pull_request:
     branches:
-      - master
+      - testFeatures
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.OMDB_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
