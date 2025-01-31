@@ -22,7 +22,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Obtener reseñas de un usuario
 router.get('/', async (req, res) => {
   let { user_id } = req.query;
 
