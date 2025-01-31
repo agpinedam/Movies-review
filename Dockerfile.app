@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port your app will run on (adjust if necessary)
-EXPOSE 5173
+# Expose both frontend (Vite) and backend ports
+EXPOSE 5173 5000
 
-# Start the application
-CMD ["npm", "run", "dev"]
+# Start backend first, then frontend
+CMD ["sh", "-c", "npm run dev"]
