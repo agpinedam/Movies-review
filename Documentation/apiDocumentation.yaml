@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: API de Gestion des Utilisateurs et Critiques de Films
+  description: API pour la gestion des utilisateurs, des profils et des critiques de films.
+  version: 1.0.0
+
+servers:
+  - url: hthttp://movies-app:5000
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Inscription d'un utilisateur
+      description: Permet d'enregistrer un nouvel utilisateur dans la base de données.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+                - confirmPassword
+                - name
+                - surname
+                - acceptTerms
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                acceptTerms:
+                  type: boolean
+      responses:
+        "201":
+          description: Utilisateur enregistré avec succès
+        "400":
+          description: Erreur de validation des données
+        "500":
+          description: Erreur serveur
+
+  /api/auth/login:
+    post:
+      summary: Connexion utilisateur
+      description: Permet de se connecter avec les identifiants utilisateur.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Connexion réussie
+        "401":
+          description: Identifiants incorrects
+        "500":
+          description: Erreur serveur
+
+  /api/users/{id}:
+    get:
+      summary: Récupérer le profil d'un utilisateur
+      description: Récupère les informations de profil d'un utilisateur par ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Profil trouvé
+        "404":
+          description: Utilisateur non trouvé
+        "500":
+          description: Erreur serveur
+    put:
+      summary: Mettre à jour le profil utilisateur
+      description: Permet de mettre à jour les informations du profil utilisateur.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                about:
+                  type: string
+                photo:
+                  type: string
+                phone:
+                  type: string
+      responses:
+        "200":
+          description: Profil mis à jour avec succès
+        "404":
+          description: Utilisateur non trouvé
+        "500":
+          description: Erreur serveur
+
+  /reviews:
+    post:
+      summary: Ajouter une critique de film
+      description: Permet aux utilisateurs d'ajouter des critiques de films.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - movie_title
+                - review
+                - rating
+              properties:
+                user_id:
+                  type: integer
+                movie_title:
+                  type: string
+                review:
+                  type: string
+                rating:
+                  type: number
+                  format: float
+      responses:
+        "201":
+          description: Critique créée avec succès
+        "400":
+          description: Données invalides
+        "500":
+          description: Erreur serveur
+    get:
+      summary: Récupérer les critiques d'un utilisateur
+      description: Renvoie toutes les critiques faites par un utilisateur spécifique.
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Critiques trouvées
+        "404":
+          description: Aucune critique trouvée
+        "500":
+          description: Erreur serveur
+
+  /search:
+    get:
+      summary: Rechercher des films
+      description: Permet de rechercher des films via l'API OMDB.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Résultats de la recherche
+        "400":
+          description: Paramètre de recherche requis
+        "500":
+          description: Erreur lors de la requête à l'API OMDB
