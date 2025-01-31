@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -17,11 +18,11 @@ const Search = () => {
 
     try {
       setError('');
-      const response = await axios.get('/api/search', {
+      const response = await axios.get('http://localhost:5000/search', {
         params: { query: searchTerm },
       });
 
-      setMovies(response.data); // Update movies with the fetched results
+      setMovies(response.data); // Update movies with the fetched results bug
       //setTotalResults(response.data.length); // Update total results if needed
     } catch (err) {
       console.error('Error fetching movies:', err.message);

@@ -18,10 +18,10 @@ const reviewsRoutes = require('./routes/reviews');
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
-app.use('/api/search', searchRoutes);
-app.use('/api/reviews', reviewsRoutes);
+app.use('/search', searchRoutes);
+app.use('/reviews', reviewsRoutes);
 
-// create environement for testing
+// create environement for testing and running server
 if (process.env.NODE_ENV !== 'test') {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {

@@ -4,11 +4,11 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
-// Registro de usuario
+// User registration route
 router.post('/register', async (req, res) => {
     const { email, password, confirmPassword, name, surname, acceptTerms } = req.body;
 
-    // Validaciones básicas
+    // Basic Validations
     if (!email || !password || !confirmPassword || !name || !surname || acceptTerms === false) {
         return res.status(400).json({ error: 'Veuillez remplir tous les champs obligatoires' });
     }
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login de usuario
+// user Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 

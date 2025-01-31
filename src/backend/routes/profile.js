@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../db');
 const router = express.Router();
 
-// Obtener perfil del usuario
+// user profile route
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Actualizar perfil del usuario
+// update user profile route
 router.put('/:id', async (req, res) => {
     const {
         about,
