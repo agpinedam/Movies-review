@@ -16,7 +16,7 @@ const AddReview = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
         try {
-            const response = await axios.post('http://movies-app:5000/reviews', {
+            const response = await axios.post('http://localhost:5000/reviews', {
                 movie_title: movieTitle,
                 review,
                 rating,

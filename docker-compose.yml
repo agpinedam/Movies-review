@@ -24,6 +24,7 @@ services:
     container_name: movies-app
     ports:
       - "5173:5173"
+      - "5000:5000"
     environment:
       DATABASE_URL: postgres://postgres:docker@postgres:5432/movies
     depends_on:
